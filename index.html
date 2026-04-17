@@ -1,226 +1,644 @@
 <!doctype html>
-<html lang="ar">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Menu-3D</title>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>La Marinade — Luxury Seafood Restaurant</title>
+  <meta name="description" content="La Marinade is a premium seafood restaurant offering an immersive fine dining experience inspired by the depths of the ocean."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="assets/css/marinade.css"/>
+  <style>
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('assets/img/hero_ocean_bg.png') center/cover no-repeat;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom,
+        rgba(6,14,26,0.55) 0%,
+        rgba(6,14,26,0.3) 40%,
+        rgba(6,14,26,0.75) 100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 1.5rem;
+      max-width: 900px;
+    }
+    .hero-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: heroIn 0.9s 0.3s var(--ease) forwards;
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--off-white);
+      opacity: 0;
+      transform: translateY(30px);
+      animation: heroIn 1s 0.5s var(--ease) forwards;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero-sub {
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      margin: 1.5rem auto 2.5rem;
+      max-width: 480px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: heroIn 0.9s 0.8s var(--ease) forwards;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: heroIn 0.9s 1.1s var(--ease) forwards;
+    }
+    @keyframes heroIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 2;
+      opacity: 0;
+      animation: heroIn 0.9s 1.5s var(--ease) forwards;
+    }
+    .hero-scroll span {
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%,100% { transform: scaleY(1); opacity:1; }
+      50% { transform: scaleY(0.6); opacity:0.4; }
+    }
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    /* ===== FEATURES BAR ===== */
+    .features-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--glass-border);
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 2rem clamp(1.5rem, 4vw, 3rem);
+      border-right: 1px solid var(--glass-border);
+      transition: background var(--dur);
+    }
+    .feature-item:last-child { border-right: none; }
+    .feature-item:hover { background: rgba(255,255,255,0.03); }
+    .feature-icon {
+      font-size: 1.6rem;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+    .feature-text strong {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--off-white);
+      margin-bottom: 0.2rem;
+    }
+    .feature-text span {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
 
-    <link rel="stylesheet" href="assets/css/combined.css" />
-    <link rel="stylesheet" href="assets/css/responsive.css" />
-  </head>
-  <body class="light-theme" data-theme="light">
-    <!-- Preloader / Splash Screen -->
-    <div id="preloader" class="preloader">
-      <div class="preloader-content">
-        <img 
-  src="assets/img/nyq7001e1srmw0cvxgwbfctb2w-Photoroom (1).webp"
-            alt="Logo" 
-          class="preloader-image preloader-image-light"
-        />
-        <img 
-  src="assets/img/nyq7001e1srmw0cvxgwbfctb2w-Photoroom (1).webp"    
-        alt="Logo" 
-          class="preloader-image preloader-image-dark"
-        />
-        <p class="preloader-text">Loading</p>
-      </div>
+    /* ===== ABOUT STRIP ===== */
+    .about-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      min-height: 600px;
+    }
+    .about-strip-img {
+      position: relative;
+      overflow: hidden;
+    }
+    .about-strip-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s var(--ease);
+    }
+    .about-strip-img:hover img { transform: scale(1.04); }
+    .about-strip-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, transparent 60%, var(--ocean-deep));
+    }
+    .about-strip-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(3rem, 6vw, 6rem);
+      background: var(--ocean-dark);
+    }
+
+    /* ===== MENU GRID (home cards) ===== */
+    .home-menu {
+      padding: var(--section-pad) clamp(1.5rem, 5vw, 4rem);
+    }
+    .home-menu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+    }
+    .menu-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .menu-card {
+      position: relative;
+      border-radius: 4px;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      cursor: pointer;
+    }
+    .menu-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--ease);
+    }
+    .menu-card:hover img { transform: scale(1.07); }
+    .menu-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(6,14,26,0.92) 0%, transparent 55%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.8rem;
+    }
+    .menu-card-tag {
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+    .menu-card-name {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--off-white);
+      margin-bottom: 0.5rem;
+    }
+    .menu-card-price {
+      font-size: 0.85rem;
+      color: var(--aqua-light);
+    }
+    .menu-card-btn {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 0.85rem;
+      transform: scale(0);
+      transition: transform 0.3s var(--ease), background var(--dur);
+    }
+    .menu-card:hover .menu-card-btn { transform: scale(1); }
+    .menu-card-btn:hover { background: var(--gold); color: var(--ocean-deep); }
+
+    /* ===== GALLERY STRIP ===== */
+    .gallery-strip {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 300px 300px;
+      gap: 4px;
+    }
+    .gallery-strip-item {
+      overflow: hidden;
+      position: relative;
+    }
+    .gallery-strip-item:first-child { grid-row: span 2; }
+    .gallery-strip-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--ease);
+    }
+    .gallery-strip-item:hover img { transform: scale(1.06); }
+    .gallery-strip-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(6,14,26,0.2);
+      transition: background var(--dur);
+    }
+    .gallery-strip-item:hover::after { background: rgba(6,14,26,0.0); }
+
+    /* ===== QUOTE ===== */
+    .quote-section {
+      padding: var(--section-pad) clamp(1.5rem, 5vw, 4rem);
+      text-align: center;
+      background: linear-gradient(135deg, var(--ocean-dark) 0%, var(--ocean-mid) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .quote-section::before {
+      content: '"';
+      position: absolute;
+      top: -2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-serif);
+      font-size: 20rem;
+      color: rgba(201,168,76,0.04);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .quote-text {
+      font-family: var(--font-serif);
+      font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--off-white);
+      max-width: 800px;
+      margin: 0 auto 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .quote-author {
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ===== CTA SECTION ===== */
+    .cta-section {
+      padding: var(--section-pad) clamp(1.5rem, 5vw, 4rem);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.5rem;
+      background: url('assets/img/hero_ocean_bg.png') center/cover no-repeat;
+      position: relative;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(6,14,26,0.78);
+    }
+    .cta-section > * { position: relative; z-index: 1; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .features-bar { grid-template-columns: 1fr; }
+      .feature-item { border-right: none; border-bottom: 1px solid var(--glass-border); }
+      .about-strip { grid-template-columns: 1fr; }
+      .about-strip-img { height: 320px; }
+      .gallery-strip { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 200px 200px; }
+      .gallery-strip-item:first-child { grid-row: span 1; grid-column: span 2; }
+      .home-menu-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    }
+    @media (max-width: 560px) {
+      .gallery-strip { grid-template-columns: 1fr; grid-template-rows: repeat(4, 220px); }
+      .gallery-strip-item:first-child { grid-column: span 1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Scroll Progress -->
+<div id="scroll-progress"></div>
+
+<!-- Preloader -->
+<div class="lm-preloader" id="preloader">
+  <p class="brand-name">La Marinade</p>
+  <p class="brand-sub">Seafood &amp; Fine Dining</p>
+  <div class="preloader-wave">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+</div>
+
+<!-- Navbar -->
+<nav class="lm-nav" id="navbar">
+  <a href="index.html" class="nav-logo">
+    La Marinade
+    <span>Seafood &amp; Fine Dining</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="index.html#menu">Menu 3D</a></li>
+    <li><a href="index.html#gallery">Gallery</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="contact.html" class="nav-cta">Reserve</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="index.html#menu">Menu 3D</a>
+  <a href="index.html#gallery">Gallery</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" style="color:var(--gold)">Reserve a Table</a>
+  <div class="mobile-social">
+    <a href="https://www.instagram.com/la_marinade.seafood" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-tiktok"></i></a>
+  </div>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Algiers · Est. 2021</p>
+    <h1 class="hero-title">The Ocean<br/>on Your <em>Plate</em></h1>
+    <p class="hero-sub">A premium seafood experience where every dish tells the story of the sea — crafted with passion, plated with artistry.</p>
+    <div class="hero-actions">
+      <a href="index.html#menu" class="btn-primary"><i class="fas fa-utensils"></i> Explore Menu</a>
+      <a href="contact.html" class="btn-outline"><i class="fas fa-calendar-alt"></i> Reserve a Table</a>
     </div>
-    <nav class="navbar">
-      <div class="nav-left">
-        <a href="#" class="logo">
-          <img
-            src="assets/img/nyq7001e1srmw0cvxgwbfctb2w-Photoroom (1).webp"
-            alt="Logo"
-            class="logo-light"
-          />
-          <img
-            src="assets/img/Gemini_Generated_Image_o61mduo61mduo61m-Photoroom.png"
-            alt="Logo"
-            class="logo-dark"
-          />
-        </a>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- Features Bar -->
+<div class="features-bar">
+  <div class="feature-item reveal">
+    <i class="fas fa-fish feature-icon"></i>
+    <div class="feature-text">
+      <strong>Daily Fresh Catch</strong>
+      <span>Sourced each morning from local fishermen</span>
+    </div>
+  </div>
+  <div class="feature-item reveal reveal-delay-1">
+    <i class="fas fa-cube feature-icon"></i>
+    <div class="feature-text">
+      <strong>3D Menu Experience</strong>
+      <span>Visualize every dish in stunning 3D &amp; AR</span>
+    </div>
+  </div>
+  <div class="feature-item reveal reveal-delay-2">
+    <i class="fas fa-star feature-icon"></i>
+    <div class="feature-text">
+      <strong>Premium Quality</strong>
+      <span>Michelin-inspired culinary standards</span>
+    </div>
+  </div>
+</div>
+
+<!-- About Strip -->
+<section class="about-strip">
+  <div class="about-strip-img">
+    <img src="assets/img/seafood_bass.png" alt="Grilled sea bass fine dining"/>
+  </div>
+  <div class="about-strip-text">
+    <p class="section-label">Our Story</p>
+    <h2 class="section-title reveal">Where the Sea<br/><em>Meets Elegance</em></h2>
+    <div class="gold-divider"></div>
+    <p class="section-desc reveal reveal-delay-1">Born from a love of the Mediterranean, La Marinade is a sanctuary for seafood lovers. Every plate is a canvas — painted with the finest ingredients the ocean has to offer.</p>
+    <p class="section-desc reveal reveal-delay-2" style="margin-top:0.75rem;">We believe fine dining should be an experience for all the senses. From our 3D menu to the last bite of your dessert, we are committed to exceeding every expectation.</p>
+    <div style="margin-top:2rem;" class="reveal reveal-delay-3">
+      <a href="about.html" class="btn-outline">Discover Our Story</a>
+    </div>
+  </div>
+</section>
+
+<!-- Menu Cards -->
+<section class="home-menu" id="menu">
+  <div class="home-menu-header">
+    <div>
+      <p class="section-label">Explore</p>
+      <h2 class="section-title reveal">Our <em>Signature</em><br/>Collections</h2>
+    </div>
+    <a href="assets/3DHTML/type1.html" class="btn-outline reveal">View All in 3D</a>
+  </div>
+  <div class="menu-cards">
+    <div class="menu-card reveal">
+      <img src="assets/img/seafood_bass.png" alt="Grilled Sea Bass"/>
+      <div class="menu-card-overlay">
+        <span class="menu-card-tag">Fish</span>
+        <p class="menu-card-name">Grilled Sea Bass</p>
+        <p class="menu-card-price">From 1,850 DA</p>
       </div>
-
-      <div class="nav-right">
-        <div class="lang-dropdown" id="lang-dropdown">
-          <button class="lang-btn" id="lang-btn" title="Select Language">
-            <i class="fas fa-globe"></i>
-          </button>
-          <div class="lang-menu">
-            <button class="lang-option" data-lang="en">English</button>
-            <button class="lang-option" data-lang="fr">Français</button>
-          </div>
-        </div>
-        <label class="theme-switch">
-          <input type="checkbox" id="theme-toggle" class="theme-switch__checkbox" />
-          <label class="theme-switch__container" for="theme-toggle">
-            <div class="theme-switch__circle-container">
-              <div class="theme-switch__sun-moon-container">
-                <div class="theme-switch__moon">
-                  <div class="theme-switch__spot"></div>
-                  <div class="theme-switch__spot"></div>
-                  <div class="theme-switch__spot"></div>
-                </div>
-              </div>
-            </div>
-            <div class="theme-switch__stars-container"></div>
-            <div class="theme-switch__clouds"></div>
-          </label>
-        </label>
-        <div class="hamburger-menu" id="menu-btn">
-          <div class="line line-1"></div>
-          <div class="line line-2"></div>
-          <div class="line line-3"></div>
-        </div>
+      <a href="assets/3DHTML/type1.html" class="menu-card-btn"><i class="fas fa-cube"></i></a>
+    </div>
+    <div class="menu-card reveal reveal-delay-1">
+      <img src="assets/img/seafood_shrimp.png" alt="Tiger Prawns"/>
+      <div class="menu-card-overlay">
+        <span class="menu-card-tag">Shrimp</span>
+        <p class="menu-card-name">Tiger Prawns</p>
+        <p class="menu-card-price">From 2,200 DA</p>
       </div>
-    </nav>
-
-    <div class="menu-overlay" id="menu-overlay"></div>
-
-    <aside class="side-menu" id="side-menu">
-      <button class="close-btn" id="close-btn">&times;</button>
-      <ul class="menu-links">
-        <li><a href="index.html" data-lang-key="home">Home</a></li>
-        <li><a href="about.html" data-lang-key="about">About Us</a></li>
-        <li><a href="contact.html" data-lang-key="contact">Contact</a></li>
-      </ul>
-    </aside>
-
-    <header class="hero-section">
-      <div class="hero-content">
-        <h1 class="hero-title">
-          <span data-lang-key="heroTitle"> </span> <span class="gold-text" data-lang-key="heroTitleGold"></span>
-        </h1>
-        <p class="hero-subtitle" data-lang-key="heroSubtitle">
-          Discover the art of sophistication and refined living.
-        </p>
+      <a href="assets/3DHTML/type2.html" class="menu-card-btn"><i class="fas fa-cube"></i></a>
+    </div>
+    <div class="menu-card reveal reveal-delay-2">
+      <img src="assets/img/seafood_oysters.png" alt="Fresh Oysters"/>
+      <div class="menu-card-overlay">
+        <span class="menu-card-tag">Oysters</span>
+        <p class="menu-card-name">Fresh Oysters</p>
+        <p class="menu-card-price">From 1,400 DA</p>
       </div>
-    </header>
-
-    <section class="cards-section">
-      <div class="section-header">
-        <h2 data-lang-key="ourExclusives">Our Exclusives</h2>
-        <div class="separator"></div>
+      <a href="assets/3DHTML/type3.html" class="menu-card-btn"><i class="fas fa-cube"></i></a>
+    </div>
+    <div class="menu-card reveal reveal-delay-3">
+      <img src="assets/img/seafood_lobster.png" alt="Lobster Thermidor"/>
+      <div class="menu-card-overlay">
+        <span class="menu-card-tag">Lobster</span>
+        <p class="menu-card-name">Lobster Thermidor</p>
+        <p class="menu-card-price">From 3,500 DA</p>
       </div>
+      <a href="assets/3DHTML/type4.html" class="menu-card-btn"><i class="fas fa-cube"></i></a>
+    </div>
+  </div>
+</section>
 
-      <div class="cards-grid">
-        <article class="card">
-          <div class="card-image">
-            <img src="assets/img/download.webp" alt="Luxury Item" />
-          </div>
-          <div class="card-content">
-            <h3 data-lang-key="royalEdition"></h3>
-            <a href="assets/3DHTML/type1.html" class="card-btn" data-lang-key="viewDetails">View Details</a>
-          </div>
-        </article>
+<!-- Gallery Strip -->
+<section id="gallery">
+  <div class="gallery-strip">
+    <div class="gallery-strip-item">
+      <img src="assets/img/seafood_lobster.png" alt="Lobster dish"/>
+    </div>
+    <div class="gallery-strip-item">
+      <img src="assets/img/seafood_bass.png" alt="Sea bass"/>
+    </div>
+    <div class="gallery-strip-item">
+      <img src="assets/img/seafood_oysters.png" alt="Oysters"/>
+    </div>
+    <div class="gallery-strip-item">
+      <img src="assets/img/seafood_shrimp.png" alt="Shrimp"/>
+    </div>
+    <div class="gallery-strip-item">
+      <img src="assets/img/hero_ocean_bg.png" alt="Ocean ambiance"/>
+    </div>
+  </div>
+</section>
 
-        <article class="card">
-          <div class="card-image">
-            <img
-              src="assets/img/Gemini_Generated_Image_bmwje3bmwje3bmwj.webp"
-              alt="wait a minute"
-            />
-          </div>
-          <div class="card-content">
-            <h3 data-lang-key="goldenEra"></h3>
-            <a href="assets/3DHTML/type2.html" class="card-btn" data-lang-key="viewDetails">View Details</a>
-          </div>
-        </article>
+<!-- Quote -->
+<section class="quote-section">
+  <p class="quote-text reveal">"The sea, once it casts its spell, holds one in its net of wonder forever."</p>
+  <p class="quote-author reveal reveal-delay-1">— Jacques Cousteau</p>
+</section>
 
-        <article class="card">
-          <div class="card-image">
-            <img
-              src="assets/img/Gemini_Generated_Image_biocvebiocvebioc.webp"
-              alt="Perfume"
-            />
-          </div>
-          <div class="card-content">
-            <h3 data-lang-key="essenceNo5"></h3>
-            <a href="assets/3DHTML/type3.html" class="card-btn" data-lang-key="viewDetails">View Details</a>
-          </div>
-        </article>
+<!-- CTA -->
+<section class="cta-section">
+  <p class="section-label" style="justify-content:center;">Book Your Experience</p>
+  <h2 class="section-title reveal" style="color:var(--off-white);">Ready to Dive <em>In?</em></h2>
+  <p class="section-desc reveal reveal-delay-1" style="text-align:center;margin:0 auto;">Reserve your table and let us take you on an unforgettable journey through the finest flavours of the sea.</p>
+  <div class="reveal reveal-delay-2" style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:1rem;">
+    <a href="contact.html" class="btn-primary"><i class="fas fa-calendar-alt"></i> Reserve a Table</a>
+    <a href="assets/3DHTML/type1.html" class="btn-outline"><i class="fas fa-cube"></i> Explore 3D Menu</a>
+  </div>
+</section>
 
-        <article class="card">
-          <div class="card-image">
-            <img
-              src="assets/img/Gemini_Generated_Image_kly3mtkly3mtkly3.webp"
-              alt="Handbag"
-            />
-          </div>
-          <div class="card-content">
-            <h3 data-lang-key="velvetTouch"></h3>
-            <a href="assets/3DHTML/type4.html" class="card-btn" data-lang-key="viewDetails">View Details</a>
-          </div>
-        </article>
+<!-- Footer -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <p class="brand-name">La Marinade</p>
+      <p class="brand-sub">Seafood &amp; Fine Dining</p>
+      <p>A premium seafood sanctuary in the heart of Algiers. Every dish, a voyage. Every visit, a memory.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="index.html#menu">Menu 3D</a>
+      <a href="index.html#gallery">Gallery</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Experience</h4>
+      <a href="assets/3DHTML/type1.html">Fish &amp; Grills</a>
+      <a href="assets/3DHTML/type2.html">Shrimp &amp; Prawns</a>
+      <a href="assets/3DHTML/type3.html">Oysters</a>
+      <a href="assets/3DHTML/type4.html">Lobster</a>
+    </div>
+    <div class="footer-col">
+      <h4>Hours</h4>
+      <a>Mon – Thu: 12:00 – 22:00</a>
+      <a>Fri – Sat: 12:00 – 23:30</a>
+      <a>Sunday: 12:00 – 21:00</a>
+      <a style="margin-top:1rem;" href="tel:+213549266783">+213 549 26 67 83</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 La Marinade. All rights reserved.</span>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/la_marinade.seafood" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-tiktok"></i></a>
+    </div>
+  </div>
+</footer>
 
-        <article class="card">
-          <div class="card-image">
-            <img
-              src="assets/img/Gemini_Generated_Image_sw9xsw9xsw9xsw9x.webp"
-              alt="Interior"
-               loading="lazy"
-            />
-          </div>
-          <div class="card-content">
-            <h3 data-lang-key="modernSuite"></h3>
-            <a href="assets/3DHTML/type5.html" class="card-btn" data-lang-key="viewDetails">View Details</a>
-          </div>
-        </article>
+<script>
+  // Scroll progress
+  const bar = document.getElementById('scroll-progress');
+  window.addEventListener('scroll', () => {
+    const p = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+    bar.style.width = (p * 100) + '%';
+  });
 
-        <article class="card">
-          <div class="card-image">
-            <img
-              src="assets/img/Gemini_Generated_Image_isvxqfisvxqfisvx.webp"
-              alt="Shoes"
-               loading="lazy"
-            />
-          </div>
-          <div class="card-content">
-           <h3 data-lang-key="zaki"></h3>
-            <a href="assets/3DHTML/type6.html" class="card-btn">View Details</a>
-          </div>
-        </article>
+  // Navbar scroll
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
 
-        <article class="card">
-          <div class="card-image">
-            <img
-              src="assets/img/Gemini_Generated_Image_x4mehtx4mehtx4me.webp"
-              alt="Luxury Bracelet"
-               loading="lazy"
-            />
-          </div>
-          <div class="card-content">
-            <h3 data-lang-key="luxuryBracelet"></h3>
-            <a href="assets/3DHTML/type7.html" class="card-btn" data-lang-key="viewDetails">View Details</a>
-          </div>
-        </article>
-       
+  // Hamburger
+  const hb = document.getElementById('hamburger');
+  const mm = document.getElementById('mobile-menu');
+  hb.addEventListener('click', () => {
+    hb.classList.toggle('open');
+    mm.classList.toggle('open');
+    document.body.style.overflow = mm.classList.contains('open') ? 'hidden' : '';
+  });
+  mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    hb.classList.remove('open');
+    mm.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
 
-        <article class="card">
-          <div class="card-image">
-            <img
-              src="assets/img/Gemini_Generated_Image_q3peviq3peviq3pe.webp"
-              alt="Premium Collection"
-              loading="lazy"
-            />
-          </div>
-          <div class="card-content">
-            <h3 data-lang-key="premiumCollection"></h3>
-            <a href="assets/3DHTML/type8.html" class="card-btn" data-lang-key="viewDetails"></a>
-          </div>
-        </article>
-      </div>
-    </section>
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="assets/js/combined.js"></script>
-  </body>
-</html>
-  </body>
+  // Preloader
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('preloader').classList.add('hidden');
+    }, 1800);
+  });
+</script>
+</body>
 </html>

@@ -1,364 +1,427 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About Us - Menu-3D</title>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About — La Marinade Seafood</title>
+  <meta name="description" content="The story behind La Marinade — a luxury seafood restaurant where the ocean meets elegance."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="assets/css/marinade.css"/>
+  <style>
+    .page-hero {
+      height: 70vh;
+      min-height: 500px;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 clamp(1.5rem,5vw,4rem) 5rem;
+      background: linear-gradient(to bottom, var(--ocean-deep) 0%, var(--ocean-mid) 60%, var(--ocean-dark) 100%);
+      position: relative;
+      overflow: hidden;
+      margin-top: var(--nav-h);
+    }
+    .page-hero::before {
+      content: 'About';
+      position: absolute;
+      right: -2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--font-serif);
+      font-size: clamp(8rem, 20vw, 18rem);
+      font-weight: 300;
+      color: rgba(201,168,76,0.05);
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .page-hero-content { position: relative; z-index: 1; }
+    .page-hero-content h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--off-white);
+    }
+    .page-hero-content h1 em { font-style: italic; color: var(--gold); }
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    /* Story */
+    .story-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      min-height: 520px;
+    }
+    .story-img {
+      position: relative;
+      overflow: hidden;
+    }
+    .story-img img { width: 100%; height: 100%; object-fit: cover; }
+    .story-text {
+      background: var(--ocean-dark);
+      padding: clamp(3rem, 6vw, 6rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
 
-    <link rel="stylesheet" href="assets/css/combined.css" />
-    <link rel="stylesheet" href="assets/css/responsive.css" />
-    <style>
-      /* About Page Specific Styles */
-      .about-hero {
-        height: 80vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 0 1rem;
-        background: radial-gradient(circle at center, transparent 0%, var(--bg-color) 100%);
-        position: relative;
-        margin-top: 60px;
-      }
+    /* Values */
+    .values-section {
+      padding: var(--section-pad) clamp(1.5rem, 5vw, 4rem);
+      background: linear-gradient(135deg, var(--ocean-deep) 0%, var(--ocean-mid) 100%);
+    }
+    .values-header { text-align: center; margin-bottom: 4rem; }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .value-card {
+      padding: 2.5rem 2rem;
+      border: 1px solid var(--glass-border);
+      border-radius: 4px;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      transition: border-color var(--dur), transform var(--dur), box-shadow var(--dur);
+    }
+    .value-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(201,168,76,0.1);
+    }
+    .value-card i {
+      font-size: 1.8rem;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+    .value-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--off-white);
+      margin-bottom: 0.75rem;
+    }
+    .value-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; }
 
-      .about-hero h1 {
-        font-size: 5rem;
-        margin-bottom: 1.5rem;
-        color: var(--text-color);
-      }
+    /* Stats */
+    .stats-section {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--glass-border);
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .stat-item {
+      padding: 3rem 2rem;
+      text-align: center;
+      border-right: 1px solid var(--glass-border);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: var(--font-serif);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .stat-label { font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); }
 
-      .about-hero p {
-        font-size: 1.3rem;
-        color: var(--accent-gold);
-        letter-spacing: 2px;
-      }
+    /* Team */
+    .team-section {
+      padding: var(--section-pad) clamp(1.5rem, 5vw, 4rem);
+      background: var(--ocean-dark);
+    }
+    .team-header { text-align: center; margin-bottom: 4rem; }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .team-card {
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+      transition: border-color var(--dur), transform var(--dur);
+    }
+    .team-card:hover { border-color: var(--gold); transform: translateY(-6px); }
+    .team-card-img {
+      height: 260px;
+      background: linear-gradient(135deg, var(--ocean-mid), var(--ocean-teal));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      color: var(--gold);
+      position: relative;
+      overflow: hidden;
+    }
+    .team-card-img::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 60px;
+      background: linear-gradient(to top, var(--ocean-dark), transparent);
+    }
+    .team-card-info {
+      padding: 1.5rem;
+      background: var(--glass-bg);
+    }
+    .team-card-info h3 {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      color: var(--off-white);
+      margin-bottom: 0.25rem;
+    }
+    .team-card-info p { font-size: 0.8rem; color: var(--gold); letter-spacing: 0.1em; }
 
-      .about-content {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 4rem 5%;
-      }
+    @media (max-width: 900px) {
+      .story-section { grid-template-columns: 1fr; }
+      .story-img { height: 300px; }
+      .stats-section { grid-template-columns: 1fr 1fr; }
+      .stat-item:nth-child(2) { border-right: none; }
+    }
+    @media (max-width: 560px) {
+      .stats-section { grid-template-columns: 1fr; }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--glass-border); }
+    }
+  </style>
+</head>
+<body>
 
-      .about-section {
-        margin-bottom: 5rem;
-      }
+<div id="scroll-progress"></div>
 
-      .about-section h2 {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-        color: var(--text-color);
-        font-family: var(--font-head);
-      }
+<div class="lm-preloader" id="preloader">
+  <p class="brand-name">La Marinade</p>
+  <p class="brand-sub">Seafood &amp; Fine Dining</p>
+  <div class="preloader-wave">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+</div>
 
-      .about-section-title {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        margin-bottom: 2rem;
-      }
+<nav class="lm-nav scrolled" id="navbar">
+  <a href="index.html" class="nav-logo">
+    La Marinade
+    <span>Seafood &amp; Fine Dining</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="index.html#menu">Menu 3D</a></li>
+    <li><a href="index.html#gallery">Gallery</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="contact.html" class="nav-cta">Reserve</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
-      .about-section-title::after {
-        content: '';
-        width: 80px;
-        height: 3px;
-        background-color: var(--accent-gold);
-      }
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="index.html#menu">Menu 3D</a>
+  <a href="index.html#gallery">Gallery</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" style="color:var(--gold)">Reserve a Table</a>
+  <div class="mobile-social">
+    <a href="https://www.instagram.com/la_marinade.seafood" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-tiktok"></i></a>
+  </div>
+</div>
 
-      .about-section p {
-        font-size: 1.1rem;
-        line-height: 1.8;
-        color: var(--text-color);
-        opacity: 0.9;
-        margin-bottom: 1.5rem;
-      }
+<!-- Page Hero -->
+<header class="page-hero">
+  <div class="page-hero-content">
+    <p class="section-label">Our Story</p>
+    <h1>About<br/><em>La Marinade</em></h1>
+  </div>
+</header>
 
-      .about-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
-        margin-top: 2rem;
-      }
+<!-- Story -->
+<section class="story-section">
+  <div class="story-img">
+    <img src="assets/img/seafood_shrimp.png" alt="La Marinade kitchen"/>
+  </div>
+  <div class="story-text">
+    <p class="section-label">Where It Began</p>
+    <h2 class="section-title reveal">Passion for the<br/><em>Deep Blue</em></h2>
+    <div class="gold-divider"></div>
+    <p class="section-desc reveal reveal-delay-1">La Marinade was born from a simple yet powerful belief: that seafood, when treated with respect and creativity, becomes poetry on a plate. Founded in Algiers, we set out to create a restaurant unlike anything the city had seen — a place where the ocean's finest gifts meet the artistry of haute cuisine.</p>
+    <p class="section-desc reveal reveal-delay-2" style="margin-top:0.75rem;">Every ingredient is hand-selected. Every dish is a dialogue between tradition and innovation. Every visit is designed to be unforgettable — from the first glance at our 3D menu to the final lingering taste of dessert.</p>
+  </div>
+</section>
 
-      .about-feature {
-        background-color: var(--card-bg);
-        border: 2px solid var(--accent-gold);
-        border-radius: 15px;
-        padding: 2rem;
-        text-align: center;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
+<!-- Stats -->
+<div class="stats-section">
+  <div class="stat-item reveal">
+    <p class="stat-num">4+</p>
+    <p class="stat-label">Years of Excellence</p>
+  </div>
+  <div class="stat-item reveal reveal-delay-1">
+    <p class="stat-num">40+</p>
+    <p class="stat-label">Signature Dishes</p>
+  </div>
+  <div class="stat-item reveal reveal-delay-2">
+    <p class="stat-num">8K+</p>
+    <p class="stat-label">Happy Guests</p>
+  </div>
+  <div class="stat-item reveal reveal-delay-3">
+    <p class="stat-num">100%</p>
+    <p class="stat-label">Fresh Daily</p>
+  </div>
+</div>
 
-      .about-feature:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2);
-      }
+<!-- Values -->
+<section class="values-section">
+  <div class="values-header">
+    <p class="section-label" style="justify-content:center;">What We Stand For</p>
+    <h2 class="section-title reveal" style="text-align:center;">Our Core <em>Values</em></h2>
+  </div>
+  <div class="values-grid">
+    <div class="value-card reveal">
+      <i class="fas fa-fish"></i>
+      <h3>Ocean Freshness</h3>
+      <p>We work directly with local fishermen to ensure every ingredient arrives at its absolute peak of freshness, every single day.</p>
+    </div>
+    <div class="value-card reveal reveal-delay-1">
+      <i class="fas fa-leaf"></i>
+      <h3>Sustainability</h3>
+      <p>We are committed to responsible sourcing and eco-conscious practices, protecting the ocean that gives us so much.</p>
+    </div>
+    <div class="value-card reveal reveal-delay-2">
+      <i class="fas fa-star"></i>
+      <h3>Culinary Excellence</h3>
+      <p>Inspired by the world's finest kitchens, our chefs push the boundaries of seafood cuisine with creativity and precision.</p>
+    </div>
+    <div class="value-card reveal reveal-delay-3">
+      <i class="fas fa-cube"></i>
+      <h3>Innovation</h3>
+      <p>From our pioneering 3D AR menu to our ever-evolving seasonal offerings, we embrace technology and creativity alike.</p>
+    </div>
+    <div class="value-card reveal">
+      <i class="fas fa-heart"></i>
+      <h3>Heartfelt Hospitality</h3>
+      <p>Every guest is family. We strive to make each visit personal, warm, and deeply memorable — from the first welcome to the final farewell.</p>
+    </div>
+    <div class="value-card reveal reveal-delay-1">
+      <i class="fas fa-globe"></i>
+      <h3>Global Inspiration</h3>
+      <p>Drawing from Mediterranean, Asian, and French culinary traditions, our menu is a world voyage expressed through seafood.</p>
+    </div>
+  </div>
+</section>
 
-      .about-feature i {
-        font-size: 2.5rem;
-        color: var(--accent-gold);
-        margin-bottom: 1rem;
-      }
+<!-- Story 2 (reversed) -->
+<section class="story-section">
+  <div class="story-text" style="background:var(--ocean-mid);">
+    <p class="section-label">Our Mission</p>
+    <h2 class="section-title reveal">Redefining<br/><em>Seafood Dining</em></h2>
+    <div class="gold-divider"></div>
+    <p class="section-desc reveal reveal-delay-1">Our mission is to make premium seafood dining an accessible luxury — a world-class experience delivered with warmth, authenticity, and a deep respect for the ocean's bounty.</p>
+    <p class="section-desc reveal reveal-delay-2" style="margin-top:0.75rem;">Through our innovative 3D menu, guests can explore every dish before ordering — a seamless fusion of technology and gastronomy that we believe is the future of fine dining.</p>
+    <div style="margin-top:2rem;" class="reveal reveal-delay-3">
+      <a href="contact.html" class="btn-primary"><i class="fas fa-calendar-alt"></i> Reserve Your Table</a>
+    </div>
+  </div>
+  <div class="story-img">
+    <img src="assets/img/seafood_lobster.png" alt="Lobster dish"/>
+  </div>
+</section>
 
-      .about-feature h3 {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-        font-family: var(--font-head);
-      }
-
-      .about-feature p {
-        font-size: 1rem;
-      }
-
-      .team-section {
-        margin-top: 4rem;
-      }
-
-      .team-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
-        margin-top: 3rem;
-      }
-
-      .team-member {
-        background-color: var(--card-bg);
-        border: 2px solid var(--accent-gold);
-        border-radius: 15px;
-        overflow: hidden;
-        text-align: center;
-        transition: transform 0.3s ease;
-      }
-
-      .team-member:hover {
-        transform: scale(1.05);
-      }
-
-      .team-member-image {
-        width: 100%;
-        height: 250px;
-        background: linear-gradient(135deg, var(--accent-gold), rgba(212, 175, 55, 0.3));
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 3rem;
-      }
-
-      .team-member-info {
-        padding: 2rem;
-      }
-
-      .team-member h3 {
-        font-size: 1.3rem;
-        margin-bottom: 0.5rem;
-        font-family: var(--font-head);
-      }
-
-      .team-member p {
-        color: var(--accent-gold);
-        font-size: 0.95rem;
-        margin-bottom: 1rem;
-      }
-
-      @media (max-width: 768px) {
-        .about-hero {
-          height: 60vh;
-          margin-top: 50px;
-        }
-
-        .about-hero h1 {
-          font-size: 2.5rem;
-        }
-
-        .about-section h2 {
-          font-size: 1.8rem;
-        }
-
-        .about-content {
-          padding: 2rem 3%;
-        }
-      }
-    </style>
-  </head>
-  <body class="light-theme" data-theme="light">
-    <!-- Preloader -->
-    <div id="preloader" class="preloader">
-      <div class="preloader-content">
-        <img 
-          src="assets/img/nyq7001e1srmw0cvxgwbfctb2w-Photoroom (1).webp" 
-          alt="Logo" 
-          class="preloader-image preloader-image-light"
-        />
-        <img 
-          src="assets/img/nyq7001e1srmw0cvxgwbfctb2w-Photoroom (1).webp" 
-          alt="Logo" 
-          class="preloader-image preloader-image-dark"
-        />
-        <p class="preloader-text">Loading</p>
+<!-- Team -->
+<section class="team-section">
+  <div class="team-header">
+    <p class="section-label" style="justify-content:center;">The Talent</p>
+    <h2 class="section-title reveal" style="text-align:center;">Meet Our <em>Team</em></h2>
+  </div>
+  <div class="team-grid">
+    <div class="team-card reveal">
+      <div class="team-card-img"><i class="fas fa-user-chef"></i></div>
+      <div class="team-card-info">
+        <h3>Chef Karim Benali</h3>
+        <p>Executive Chef · 15 Years Experience</p>
       </div>
     </div>
-
-    <!-- Navbar -->
-    <nav class="navbar">
-      <div class="nav-left">
-        <a href="index.html" class="logo">
-          <img
-            src="assets/img/nyq7001e1srmw0cvxgwbfctb2w-Photoroom (1).webp"
-            alt="Logo"
-            class="logo-light"
-          />
-          <img
-            src="assets/img/Gemini_Generated_Image_o61mduo61mduo61m-Photoroom.png"
-            alt="Logo"
-            class="logo-dark"
-          />
-        </a>
+    <div class="team-card reveal reveal-delay-1">
+      <div class="team-card-img"><i class="fas fa-user"></i></div>
+      <div class="team-card-info">
+        <h3>Yasmine Aouad</h3>
+        <p>Pastry Chef · Culinary Institute Paris</p>
       </div>
-
-      <div class="nav-right">
-        <div class="lang-dropdown" id="lang-dropdown">
-          <button class="lang-btn" id="lang-btn" title="Select Language">
-            <i class="fas fa-globe"></i>
-          </button>
-          <div class="lang-menu">
-            <button class="lang-option" data-lang="en">English</button>
-            <button class="lang-option" data-lang="fr">Français</button>
-          </div>
-        </div>
-        <label class="theme-switch">
-          <input type="checkbox" id="theme-toggle" class="theme-switch__checkbox" />
-          <label class="theme-switch__container" for="theme-toggle">
-            <div class="theme-switch__circle-container">
-              <div class="theme-switch__sun-moon-container">
-                <div class="theme-switch__moon">
-                  <div class="theme-switch__spot"></div>
-                  <div class="theme-switch__spot"></div>
-                  <div class="theme-switch__spot"></div>
-                </div>
-              </div>
-            </div>
-            <div class="theme-switch__clouds"></div>
-          </label>
-        </label>
-        <div class="hamburger-menu" id="menu-btn">
-          <div class="line line-1"></div>
-          <div class="line line-2"></div>
-          <div class="line line-3"></div>
-        </div>
+    </div>
+    <div class="team-card reveal reveal-delay-2">
+      <div class="team-card-img"><i class="fas fa-concierge-bell"></i></div>
+      <div class="team-card-info">
+        <h3>Amine Cherif</h3>
+        <p>Head Sommelier · Wine &amp; Beverage Director</p>
       </div>
-    </nav>
+    </div>
+  </div>
+</section>
 
-    <div class="menu-overlay" id="menu-overlay"></div>
+<!-- Footer -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <p class="brand-name">La Marinade</p>
+      <p class="brand-sub">Seafood &amp; Fine Dining</p>
+      <p>A premium seafood sanctuary in the heart of Algiers. Every dish, a voyage. Every visit, a memory.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="index.html#menu">Menu 3D</a>
+      <a href="index.html#gallery">Gallery</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Experience</h4>
+      <a href="assets/3DHTML/type1.html">Fish &amp; Grills</a>
+      <a href="assets/3DHTML/type2.html">Shrimp &amp; Prawns</a>
+      <a href="assets/3DHTML/type3.html">Oysters</a>
+      <a href="assets/3DHTML/type4.html">Lobster</a>
+    </div>
+    <div class="footer-col">
+      <h4>Hours</h4>
+      <a>Mon – Thu: 12:00 – 22:00</a>
+      <a>Fri – Sat: 12:00 – 23:30</a>
+      <a>Sunday: 12:00 – 21:00</a>
+      <a style="margin-top:1rem;" href="tel:+213549266783">+213 549 26 67 83</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 La Marinade. All rights reserved.</span>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/la_marinade.seafood" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-tiktok"></i></a>
+    </div>
+  </div>
+</footer>
 
-    <!-- Side Menu -->
-    <aside class="side-menu" id="side-menu">
-      <button class="close-btn" id="close-btn">&times;</button>
-      <ul class="menu-links">
-        <li><a href="index.html" data-lang-key="home">Home</a></li>
-        <li><a href="about.html" class="active" data-lang-key="about">About Us</a></li>
-        <li><a href="contact.html" data-lang-key="contact">Contact</a></li>
-      </ul>
-    </aside>
-
-    <!-- About Hero Section -->
-    <section class="about-hero">
-      <div class="hero-content">
-        <h1 data-lang-key="aboutTitle">About Us</h1>
-        <p data-lang-key="aboutSubtitle">Crafting exceptional dining experiences through innovation</p>
-      </div>
-    </section>
-
-    <!-- About Content -->
-    <main class="about-content">
-      <!-- Story Section -->
-      <section class="about-section">
-        <div class="about-section-title">
-          <h2 data-lang-key="ourStory">Our Story</h2>
-        </div>
-        <p data-lang-key="storyContent">
-          At Menu-3D, we believe that dining is not just about taste—it's about experience. Our journey began with a simple vision: to revolutionize how customers interact with menus by bringing food to life through cutting-edge 3D and AR technology.
-        </p>
-        <p data-lang-key="storyContent2">
-          Every dish tells a story, and we're here to help you discover it before you even take the first bite. From visualization to indulgence, we're committed to making your dining experience unforgettable.
-        </p>
-      </section>
-
-      <!-- Mission Section -->
-      <section class="about-section">
-        <div class="about-section-title">
-          <h2 data-lang-key="ourMission">Our Mission</h2>
-        </div>
-        <p data-lang-key="missionContent">
-          Our mission is to bridge the gap between imagination and reality in the culinary world. We empower restaurants and diners alike with innovative technology that transforms menus into immersive experiences, making food choices more confident and enjoyable.
-        </p>
-      </section>
-
-      <!-- Why Choose Us Section -->
-      <section class="about-section">
-        <div class="about-section-title">
-          <h2 data-lang-key="whyChooseUs">Why Choose Menu-3D</h2>
-        </div>
-        <div class="about-grid">
-          <div class="about-feature">
-            <i class="fas fa-cube"></i>
-            <h3 data-lang-key="feature1Title">3D Visualization</h3>
-            <p data-lang-key="feature1">Experience your meals in stunning 3D detail before ordering</p>
-          </div>
-          <div class="about-feature">
-            <i class="fas fa-mobile-alt"></i>
-            <h3 data-lang-key="feature2Title">AR Technology</h3>
-            <p data-lang-key="feature2">See how dishes look with augmented reality in your own space</p>
-          </div>
-          <div class="about-feature">
-            <i class="fas fa-leaf"></i>
-            <h3 data-lang-key="feature3Title">Quality Focus</h3>
-            <p data-lang-key="feature3">We highlight the finest details and ingredients of every dish</p>
-          </div>
-          <div class="about-feature">
-            <i class="fas fa-globe"></i>
-            <h3 data-lang-key="feature4Title">Global Standard</h3>
-            <p data-lang-key="feature4">Premium experience adapted for restaurants worldwide</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Values Section -->
-      <section class="about-section">
-        <div class="about-section-title">
-          <h2 data-lang-key="ourValues">Our Values</h2>
-        </div>
-        <div class="about-grid">
-          <div class="about-feature">
-            <i class="fas fa-star"></i>
-            <h3 data-lang-key="valueInnovation">Innovation</h3>
-            <p data-lang-key="valueInnovationDesc">Constantly pushing boundaries with technology</p>
-          </div>
-          <div class="about-feature">
-            <i class="fas fa-heart"></i>
-            <h3 data-lang-key="valueExcellence">Excellence</h3>
-            <p data-lang-key="valueExcellenceDesc">Delivering premium experiences every time</p>
-          </div>
-          <div class="about-feature">
-            <i class="fas fa-handshake"></i>
-            <h3 data-lang-key="valuePartnership">Partnership</h3>
-            <p data-lang-key="valuePartnershipDesc">Working closely with our restaurant partners</p>
-          </div>
-          <div class="about-feature">
-            <i class="fas fa-users"></i>
-            <h3 data-lang-key="valueCommunity">Community</h3>
-            <p data-lang-key="valueCommunityDesc">Building a dining community of food lovers</p>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="assets/js/combined.js"></script>
-  </body>
+<script>
+  const bar = document.getElementById('scroll-progress');
+  window.addEventListener('scroll', () => {
+    bar.style.width = (window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100) + '%';
+  });
+  const hb = document.getElementById('hamburger');
+  const mm = document.getElementById('mobile-menu');
+  hb.addEventListener('click', () => {
+    hb.classList.toggle('open');
+    mm.classList.toggle('open');
+    document.body.style.overflow = mm.classList.contains('open') ? 'hidden' : '';
+  });
+  mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    hb.classList.remove('open'); mm.classList.remove('open'); document.body.style.overflow = '';
+  }));
+  const revealEls = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  }), { threshold: 0.12 });
+  revealEls.forEach(el => obs.observe(el));
+  window.addEventListener('load', () => setTimeout(() => document.getElementById('preloader').classList.add('hidden'), 1800));
+</script>
+</body>
 </html>
