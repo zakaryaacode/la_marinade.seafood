@@ -83,21 +83,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   transition: opacity 0.8s var(--ease), visibility 0.8s;
 }
 .lm-preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-.lm-preloader .brand-name {
-  font-family: var(--font-serif);
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  font-weight: 300;
-  letter-spacing: 0.15em;
-  color: var(--off-white);
-  margin-bottom: 0.25rem;
-  animation: preloaderPulse 2s ease-in-out infinite;
-}
-.lm-preloader .brand-sub {
-  font-size: 0.75rem;
-  letter-spacing: 0.35em;
-  text-transform: uppercase;
-  color: var(--gold);
+.lm-preloader .brand-logo {
+  height: 120px;
+  width: auto;
   margin-bottom: 2.5rem;
+  animation: preloaderPulse 2s ease-in-out infinite;
 }
 .preloader-wave {
   display: flex; gap: 6px;
@@ -139,21 +129,13 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   box-shadow: 0 1px 0 var(--glass-border);
 }
 .lm-nav .nav-logo {
-  font-family: var(--font-serif);
-  font-size: 1.6rem;
-  font-weight: 300;
-  letter-spacing: 0.12em;
-  color: var(--off-white);
   display: flex;
-  flex-direction: column;
-  line-height: 1;
+  align-items: center;
 }
-.lm-nav .nav-logo span {
-  font-size: 0.55rem;
-  letter-spacing: 0.4em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-top: 2px;
+.lm-nav .nav-logo img {
+  height: 50px;
+  width: auto;
+  display: block;
 }
 .nav-links {
   display: flex;
@@ -238,7 +220,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .mobile-menu .mobile-social {
   display: flex; gap: 1.5rem; margin-top: 2rem;
 }
-.mobile-menu .mobile-social a { font-size: 1.2rem; opacity: 0.6; }
+.mobile-menu .mobile-social a { font-size: 1.6rem; opacity: 0.8; }
 
 /* === SECTION LABELS === */
 .section-label {
@@ -347,19 +329,10 @@ footer {
   gap: 3rem;
   margin-bottom: 3rem;
 }
-.footer-brand .brand-name {
-  font-family: var(--font-serif);
-  font-size: 2rem;
-  font-weight: 300;
-  letter-spacing: 0.1em;
-  margin-bottom: 0.25rem;
-}
-.footer-brand .brand-sub {
-  font-size: 0.65rem;
-  letter-spacing: 0.35em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 1rem;
+.footer-brand .brand-logo {
+  height: 80px;
+  width: auto;
+  margin-bottom: 1.5rem;
 }
 .footer-brand p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.8; }
 .footer-col h4 {
@@ -388,14 +361,14 @@ footer {
 }
 .footer-social { display: flex; gap: 1rem; }
 .footer-social a {
-  width: 36px; height: 36px;
+  width: 44px; height: 44px;
   border: 1px solid var(--glass-border);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--text-muted);
-  font-size: 0.85rem;
+  font-size: 1.3rem;
   transition: border-color var(--dur), color var(--dur), transform var(--dur);
 }
 .footer-social a:hover {

@@ -24,16 +24,14 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background: url('assets/img/hero_ocean_bg.png') center/cover no-repeat;
+      background: linear-gradient(135deg, var(--ocean-dark) 0%, var(--ocean-mid) 50%, var(--ocean-deep) 100%);
     }
     .hero-bg::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom,
-        rgba(6,14,26,0.55) 0%,
-        rgba(6,14,26,0.3) 40%,
-        rgba(6,14,26,0.75) 100%);
+      background: radial-gradient(circle at top right, rgba(201, 168, 76, 0.08) 0%, transparent 50%),
+                  radial-gradient(circle at bottom left, rgba(74, 144, 165, 0.1) 0%, transparent 50%);
     }
     .hero-content {
       position: relative;
@@ -369,8 +367,7 @@
 
 <!-- Preloader -->
 <div class="lm-preloader" id="preloader">
-  <p class="brand-name">La Marinade</p>
-  <p class="brand-sub">Seafood &amp; Fine Dining</p>
+  <img src="assets/img/x1.png" alt="La Marinade Logo" class="brand-logo">
   <div class="preloader-wave">
     <span></span><span></span><span></span><span></span><span></span>
   </div>
@@ -379,16 +376,14 @@
 <!-- Navbar -->
 <nav class="lm-nav" id="navbar">
   <a href="index.html" class="nav-logo">
-    La Marinade
-    <span>Seafood &amp; Fine Dining</span>
+    <img src="assets/img/x1.png" alt="La Marinade">
   </a>
   <ul class="nav-links">
     <li><a href="index.html" class="active">Home</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="index.html#menu">Menu 3D</a></li>
-    <li><a href="index.html#gallery">Gallery</a></li>
+
     <li><a href="contact.html">Contact</a></li>
-    <li><a href="contact.html" class="nav-cta">Reserve</a></li>
   </ul>
   <button class="nav-hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -400,13 +395,12 @@
   <a href="index.html">Home</a>
   <a href="about.html">About</a>
   <a href="index.html#menu">Menu 3D</a>
-  <a href="index.html#gallery">Gallery</a>
+
   <a href="contact.html">Contact</a>
-  <a href="contact.html" style="color:var(--gold)">Reserve a Table</a>
   <div class="mobile-social">
     <a href="https://www.instagram.com/la_marinade.seafood" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="#"><i class="fab fa-facebook"></i></a>
-    <a href="#"><i class="fab fa-tiktok"></i></a>
+    <a href="https://www.facebook.com/people/La-Marinade-Seafood/61570489477941/?ref=PROFILE_EDIT_xav_ig_profile_page_web#" target="_blank"><i class="fab fa-facebook"></i></a>
+    <a href="https://www.tiktok.com/@la.marinade_seafood?_r=1&_t=ZN-925AebrUnAc&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnPhN3oi7mdw5uiHWwXKiXOqUtA5Ww52c9yeDWvqcUKmCRTcEwTh-P9Fe3E1E_aem_6cMM0jhsqXGjW3ArKEsfXA" target="_blank"><i class="fab fa-tiktok"></i></a>
   </div>
 </div>
 
@@ -419,7 +413,6 @@
     <p class="hero-sub">A premium seafood experience where every dish tells the story of the sea — crafted with passion, plated with artistry.</p>
     <div class="hero-actions">
       <a href="index.html#menu" class="btn-primary"><i class="fas fa-utensils"></i> Explore Menu</a>
-      <a href="contact.html" class="btn-outline"><i class="fas fa-calendar-alt"></i> Reserve a Table</a>
     </div>
   </div>
   <div class="hero-scroll">
@@ -453,22 +446,6 @@
   </div>
 </div>
 
-<!-- About Strip -->
-<section class="about-strip">
-  <div class="about-strip-img">
-    <img src="assets/img/seafood_bass.png" alt="Grilled sea bass fine dining"/>
-  </div>
-  <div class="about-strip-text">
-    <p class="section-label">Our Story</p>
-    <h2 class="section-title reveal">Where the Sea<br/><em>Meets Elegance</em></h2>
-    <div class="gold-divider"></div>
-    <p class="section-desc reveal reveal-delay-1">Born from a love of the Mediterranean, La Marinade is a sanctuary for seafood lovers. Every plate is a canvas — painted with the finest ingredients the ocean has to offer.</p>
-    <p class="section-desc reveal reveal-delay-2" style="margin-top:0.75rem;">We believe fine dining should be an experience for all the senses. From our 3D menu to the last bite of your dessert, we are committed to exceeding every expectation.</p>
-    <div style="margin-top:2rem;" class="reveal reveal-delay-3">
-      <a href="about.html" class="btn-outline">Discover Our Story</a>
-    </div>
-  </div>
-</section>
 
 <!-- Menu Cards -->
 <section class="home-menu" id="menu">
@@ -518,27 +495,24 @@
     </div>
   </div>
 </section>
-
-<!-- Gallery Strip -->
-<section id="gallery">
-  <div class="gallery-strip">
-    <div class="gallery-strip-item">
-      <img src="assets/img/seafood_lobster.png" alt="Lobster dish"/>
-    </div>
-    <div class="gallery-strip-item">
-      <img src="assets/img/seafood_bass.png" alt="Sea bass"/>
-    </div>
-    <div class="gallery-strip-item">
-      <img src="assets/img/seafood_oysters.png" alt="Oysters"/>
-    </div>
-    <div class="gallery-strip-item">
-      <img src="assets/img/seafood_shrimp.png" alt="Shrimp"/>
-    </div>
-    <div class="gallery-strip-item">
-      <img src="assets/img/hero_ocean_bg.png" alt="Ocean ambiance"/>
+<!-- About Strip -->
+<section class="about-strip">
+  <div class="about-strip-img">
+    <img src="assets/img/seafood_bass.png" alt="Grilled sea bass fine dining"/>
+  </div>
+  <div class="about-strip-text">
+    <p class="section-label">Our Story</p>
+    <h2 class="section-title reveal">Where the Sea<br/><em>Meets Elegance</em></h2>
+    <div class="gold-divider"></div>
+    <p class="section-desc reveal reveal-delay-1">Born from a love of the Mediterranean, La Marinade is a sanctuary for seafood lovers. Every plate is a canvas — painted with the finest ingredients the ocean has to offer.</p>
+    <p class="section-desc reveal reveal-delay-2" style="margin-top:0.75rem;">We believe fine dining should be an experience for all the senses. From our 3D menu to the last bite of your dessert, we are committed to exceeding every expectation.</p>
+    <div style="margin-top:2rem;" class="reveal reveal-delay-3">
+      <a href="about.html" class="btn-outline">Discover Our Story</a>
     </div>
   </div>
 </section>
+
+
 
 <!-- Quote -->
 <section class="quote-section">
@@ -548,12 +522,11 @@
 
 <!-- CTA -->
 <section class="cta-section">
-  <p class="section-label" style="justify-content:center;">Book Your Experience</p>
+  <p class="section-label" style="justify-content:center;">Discover the Experience</p>
   <h2 class="section-title reveal" style="color:var(--off-white);">Ready to Dive <em>In?</em></h2>
-  <p class="section-desc reveal reveal-delay-1" style="text-align:center;margin:0 auto;">Reserve your table and let us take you on an unforgettable journey through the finest flavours of the sea.</p>
-  <div class="reveal reveal-delay-2" style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:1rem;">
-    <a href="contact.html" class="btn-primary"><i class="fas fa-calendar-alt"></i> Reserve a Table</a>
-    <a href="assets/3DHTML/type1.html" class="btn-outline"><i class="fas fa-cube"></i> Explore 3D Menu</a>
+  <div class="reveal reveal-delay-1" style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:1rem;">
+    <a href="assets/3DHTML/type1.html" class="btn-primary"><i class="fas fa-cube"></i> Explore 3D Menu</a>
+    <a href="contact.html" class="btn-outline"><i class="fas fa-phone"></i> Contact Us</a>
   </div>
 </section>
 
@@ -561,8 +534,7 @@
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <p class="brand-name">La Marinade</p>
-      <p class="brand-sub">Seafood &amp; Fine Dining</p>
+      <img src="assets/img/x1.png" alt="La Marinade Logo" class="brand-logo">
       <p>A premium seafood sanctuary in the heart of Algiers. Every dish, a voyage. Every visit, a memory.</p>
     </div>
     <div class="footer-col">
@@ -570,7 +542,7 @@
       <a href="index.html">Home</a>
       <a href="about.html">About Us</a>
       <a href="index.html#menu">Menu 3D</a>
-      <a href="index.html#gallery">Gallery</a>
+
       <a href="contact.html">Contact</a>
     </div>
     <div class="footer-col">
@@ -592,8 +564,8 @@
     <span>© 2025 La Marinade. All rights reserved.</span>
     <div class="footer-social">
       <a href="https://www.instagram.com/la_marinade.seafood" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-facebook"></i></a>
-      <a href="#"><i class="fab fa-tiktok"></i></a>
+      <a href="https://www.facebook.com/people/La-Marinade-Seafood/61570489477941/?ref=PROFILE_EDIT_xav_ig_profile_page_web#" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.tiktok.com/@la.marinade_seafood?_r=1&_t=ZN-925AebrUnAc&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnPhN3oi7mdw5uiHWwXKiXOqUtA5Ww52c9yeDWvqcUKmCRTcEwTh-P9Fe3E1E_aem_6cMM0jhsqXGjW3ArKEsfXA" target="_blank"><i class="fab fa-tiktok"></i></a>
     </div>
   </div>
 </footer>

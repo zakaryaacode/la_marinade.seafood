@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact — La Marinade Seafood</title>
+  <meta name="description" content="Get in touch with La Marinade. Reserve a table or ask us any questions."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="assets/css/marinade.css"/>
+  <style>
+
+
+    /* Contact Section */
+    .contact-section {
+      padding: var(--section-pad) clamp(1.5rem, 5vw, 4rem);
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 4rem;
+      max-width: 1400px;
+      margin: calc(var(--nav-h) + 2rem) auto 0;
+    }
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+    .info-block h3 {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      font-weight: 400;
+    }
+    .info-block p, .info-block a {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      transition: color var(--dur);
+    }
+    .info-block a:hover {
+      color: var(--off-white);
+    }
+    .info-block i {
+      color: var(--gold);
+      margin-right: 0.5rem;
+      width: 20px;
+      text-align: center;
+    }
+
+    /* Contact Form */
+    .contact-form-wrapper {
+      background: var(--ocean-dark);
+      padding: clamp(2rem, 4vw, 3.5rem);
+      border: 1px solid var(--glass-border);
+      border-radius: 4px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .form-control {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(240,237,232,0.2);
+      padding: 0.8rem 0;
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      color: var(--off-white);
+      transition: border-color var(--dur);
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+    .form-control::placeholder {
+      color: rgba(240,237,232,0.3);
+    }
+    textarea.form-control {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    /* Map Box */
+    .map-wrapper {
+      width: 100%;
+      height: 100%;
+      min-height: 400px;
+      border: 1px solid var(--glass-border);
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+    .map-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      filter: grayscale(30%) contrast(1.1); /* Subtle dark luxury feel */
+    }
+
+    @media (max-width: 900px) {
+      .contact-section { grid-template-columns: 1fr; gap: 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="scroll-progress"></div>
+
+<div class="lm-preloader" id="preloader">
+  <img src="assets/img/x1.png" alt="La Marinade Logo" class="brand-logo">
+  <div class="preloader-wave">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+</div>
+
+<nav class="lm-nav scrolled" id="navbar">
+  <a href="index.html" class="nav-logo">
+    <img src="assets/img/x1.png" alt="La Marinade">
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="index.html#menu">Menu 3D</a></li>
+
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="index.html#menu">Menu 3D</a>
+
+  <a href="contact.html" style="color:var(--gold)">Contact</a>
+  <div class="mobile-social">
+    <a href="https://www.instagram.com/la_marinade.seafood" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.facebook.com/people/La-Marinade-Seafood/61570489477941/?ref=PROFILE_EDIT_xav_ig_profile_page_web#" target="_blank"><i class="fab fa-facebook"></i></a>
+    <a href="https://www.tiktok.com/@la.marinade_seafood?_r=1&_t=ZN-925AebrUnAc&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnPhN3oi7mdw5uiHWwXKiXOqUtA5Ww52c9yeDWvqcUKmCRTcEwTh-P9Fe3E1E_aem_6cMM0jhsqXGjW3ArKEsfXA" target="_blank"><i class="fab fa-tiktok"></i></a>
+  </div>
+</div>
+
+
+
+<!-- Contact Section -->
+<section class="contact-section">
+  <div class="contact-info reveal">
+    <div class="info-block">
+      <h3>Location</h3>
+      <p><i class="fas fa-map-marker-alt"></i> 123 Rue de la Plage, Algiers, Algeria</p>
+    </div>
+    
+    <div class="info-block">
+      <h3>Reservations &amp; Inquiries</h3>
+      <p><i class="fas fa-phone"></i> <a href="tel:+213549266783">+213 549 26 67 83</a></p>
+      <p><i class="fas fa-envelope"></i> <a href="mailto:contact@lamarinade.dz">contact@lamarinade.dz</a></p>
+    </div>
+
+    <div class="info-block">
+      <h3>Opening Hours</h3>
+      <p><i class="far fa-clock"></i> <strong>Mon – Thu:</strong> 12:00 – 22:00</p>
+      <p><i class="far fa-clock"></i> <strong>Fri – Sat:</strong> 12:00 – 23:30</p>
+      <p><i class="far fa-clock"></i> <strong>Sunday:</strong> 12:00 – 21:00</p>
+    </div>
+
+    <div class="info-block">
+      <h3>Follow Us</h3>
+      <div style="display:flex;gap:1rem;margin-top:0.5rem;font-size:1.8rem;">
+        <a href="https://www.instagram.com/la_marinade.seafood" target="_blank"><i class="fab fa-instagram" style="margin:0;"></i></a>
+        <a href="https://www.facebook.com/people/La-Marinade-Seafood/61570489477941/?ref=PROFILE_EDIT_xav_ig_profile_page_web#" target="_blank"><i class="fab fa-facebook" style="margin:0;"></i></a>
+        <a href="https://www.tiktok.com/@la.marinade_seafood?_r=1&_t=ZN-925AebrUnAc&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnPhN3oi7mdw5uiHWwXKiXOqUtA5Ww52c9yeDWvqcUKmCRTcEwTh-P9Fe3E1E_aem_6cMM0jhsqXGjW3ArKEsfXA" target="_blank"><i class="fab fa-tiktok" style="margin:0;"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="map-wrapper reveal reveal-delay-1">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2492.955980190541!2d-1.3251104!3d34.8862741!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd7e8f0022965485%3A0xcdba9dda90a59b2d!2sLa%20Marinade%20seafood!5e1!3m2!1sen!2sdz!4v1776628440667!5m2!1sen!2sdz" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="assets/img/x1.png" alt="La Marinade Logo" class="brand-logo">
+      <p>A premium seafood sanctuary in the heart of Algiers. Every dish, a voyage. Every visit, a memory.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="index.html#menu">Menu 3D</a>
+
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Experience</h4>
+      <a href="assets/3DHTML/type1.html">Fish &amp; Grills</a>
+      <a href="assets/3DHTML/type2.html">Shrimp &amp; Prawns</a>
+      <a href="assets/3DHTML/type3.html">Oysters</a>
+      <a href="assets/3DHTML/type4.html">Lobster</a>
+    </div>
+    <div class="footer-col">
+      <h4>Hours</h4>
+      <a>Mon – Thu: 12:00 – 22:00</a>
+      <a>Fri – Sat: 12:00 – 23:30</a>
+      <a>Sunday: 12:00 – 21:00</a>
+      <a style="margin-top:1rem;" href="tel:+213549266783">+213 549 26 67 83</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 La Marinade. All rights reserved.</span>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/la_marinade.seafood" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.facebook.com/people/La-Marinade-Seafood/61570489477941/?ref=PROFILE_EDIT_xav_ig_profile_page_web#" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.tiktok.com/@la.marinade_seafood?_r=1&_t=ZN-925AebrUnAc&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnPhN3oi7mdw5uiHWwXKiXOqUtA5Ww52c9yeDWvqcUKmCRTcEwTh-P9Fe3E1E_aem_6cMM0jhsqXGjW3ArKEsfXA" target="_blank"><i class="fab fa-tiktok"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const bar = document.getElementById('scroll-progress');
+  window.addEventListener('scroll', () => {
+    bar.style.width = (window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100) + '%';
+  });
+  const hb = document.getElementById('hamburger');
+  const mm = document.getElementById('mobile-menu');
+  hb.addEventListener('click', () => {
+    hb.classList.toggle('open');
+    mm.classList.toggle('open');
+    document.body.style.overflow = mm.classList.contains('open') ? 'hidden' : '';
+  });
+  mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    hb.classList.remove('open'); mm.classList.remove('open'); document.body.style.overflow = '';
+  }));
+  const revealEls = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  }), { threshold: 0.12 });
+  revealEls.forEach(el => obs.observe(el));
+  window.addEventListener('load', () => setTimeout(() => document.getElementById('preloader').classList.add('hidden'), 1800));
+</script>
+</body>
+</html>
