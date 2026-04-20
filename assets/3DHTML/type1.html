@@ -1,372 +1,327 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>3D Menu — La Marinade Seafood</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
-  <link rel="stylesheet" href="../css/marinade.css"/>
-  <style>
-    /* 3D Menu Specific Styles */
-    body { padding-top: var(--nav-h); }
-    .menu-section {
-      padding: clamp(2rem, 5vw, 4rem);
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--gold);
-      font-size: 0.85rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 2rem;
-      transition: color var(--dur), transform var(--dur);
-    }
-    .back-link:hover { color: var(--off-white); transform: translateX(-4px); }
-    
-    .section-header { text-align: center; margin-bottom: 3rem; }
-    
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-    }
-    
-    .dish-card {
-      background: var(--ocean-dark);
-      border: 1px solid var(--glass-border);
-      border-radius: 4px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: border-color var(--dur), transform var(--dur);
-    }
-    .dish-card:hover {
-      border-color: var(--gold);
-      transform: translateY(-4px);
-    }
-    
-    .model-wrapper {
-      height: 300px;
-      background: linear-gradient(135deg, rgba(201,168,76,0.05), transparent);
-      position: relative;
-    }
-    model-viewer {
-      width: 100%;
-      height: 100%;
-      --poster-color: transparent;
-    }
-    
-    .ar-button {
-      position: absolute;
-      bottom: 1rem;
-      right: 1rem;
-      background: var(--glass-bg);
-      border: 1px solid var(--gold);
-      color: var(--gold);
-      padding: 0.5rem 1rem;
-      border-radius: 2px;
-      font-family: var(--font-sans);
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      backdrop-filter: var(--glass-blur);
-    }
-    .ar-button:hover { background: var(--gold); color: var(--ocean-deep); }
-    .ar-icon { width: 16px; height: 16px; }
-    
-    .dish-info { padding: 2rem; flex: 1; display: flex; flex-direction: column; }
-    .dish-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 1rem;
-      gap: 1rem;
-    }
-    .dish-name {
-      font-family: var(--font-serif);
-      font-size: 1.6rem;
-      font-weight: 300;
-      color: var(--off-white);
-      line-height: 1.2;
-    }
-    .dish-price {
-      font-size: 1.1rem;
-      color: var(--gold);
-      font-weight: 500;
-      white-space: nowrap;
-    }
-    .dish-desc {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      margin-bottom: 1.5rem;
-      line-height: 1.6;
-      flex: 1;
-    }
-    
-    .dish-details {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--glass-border);
-    }
-    .detail-item {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    .detail-item i { color: var(--gold); }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Menu — La Marinade</title>
+<meta name="description" content="Explore La Marinade's full interactive menu with 3D dish previews and AR experience."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
+<style>
+:root {
+  --ocean-deep:#060e1a;--ocean-dark:#0a1628;--ocean-mid:#0d2340;--ocean-teal:#0d3b5e;
+  --gold:#c9a84c;--gold-light:#e2c97e;--gold-glow:rgba(201,168,76,0.25);
+  --off-white:#f0ede8;--text-muted:rgba(240,237,232,0.6);
+  --glass-bg:rgba(13,35,64,0.55);--glass-border:rgba(201,168,76,0.18);
+  --font-serif:'Cormorant Garamond',Georgia,serif;--font-sans:'DM Sans',system-ui,sans-serif;
+  --ease:cubic-bezier(0.4,0,0.2,1);--dur:0.35s;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-sans);background:var(--ocean-deep);color:var(--off-white);overflow-x:hidden;min-height:100vh;}
+a{color:inherit;text-decoration:none;}
+img{display:block;max-width:100%;}
+
+/* TOPBAR */
+.topbar{position:sticky;top:0;z-index:100;background:rgba(6,14,26,0.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--glass-border);padding:1rem clamp(1rem,4vw,3rem);}
+.topbar-inner{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;max-width:1400px;margin:0 auto;}
+.back-btn{display:flex;align-items:center;gap:.4rem;color:var(--gold);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;white-space:nowrap;transition:transform var(--dur);}
+.back-btn:hover{transform:translateX(-4px);}
+.brand{font-family:var(--font-serif);font-size:1.3rem;font-weight:300;color:var(--off-white);margin-right:auto;}
+.brand em{color:var(--gold);font-style:italic;}
+.search-wrap{position:relative;flex:1;max-width:280px;}
+.search-wrap i{position:absolute;left:.8rem;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:.85rem;}
+#search-input{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--glass-border);border-radius:2px;padding:.55rem .8rem .55rem 2.2rem;font-family:var(--font-sans);font-size:.85rem;color:var(--off-white);outline:none;transition:border-color var(--dur);}
+#search-input::placeholder{color:var(--text-muted);}
+#search-input:focus{border-color:var(--gold);}
+
+/* FILTER BAR */
+.filter-section{padding:1.5rem clamp(1rem,4vw,3rem) 0;max-width:1400px;margin:0 auto;}
+.filter-bar{display:flex;gap:.5rem;flex-wrap:wrap;padding-bottom:1rem;}
+.filter-btn{padding:.5rem 1.1rem;border:1px solid var(--glass-border);border-radius:2px;background:transparent;font-family:var(--font-sans);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);cursor:pointer;transition:all var(--dur);}
+.filter-btn:hover{border-color:rgba(201,168,76,.5);color:var(--off-white);}
+.filter-btn.active{background:var(--gold);border-color:var(--gold);color:var(--ocean-deep);}
+
+/* GRID */
+.menu-section{max-width:1400px;margin:0 auto;padding:1.5rem clamp(1rem,4vw,3rem) 4rem;}
+.results-count{font-size:.78rem;color:var(--text-muted);letter-spacing:.1em;margin-bottom:1.5rem;}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.5rem;}
+
+/* CARD */
+.dish-card{background:var(--ocean-dark);border:1px solid var(--glass-border);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;transition:border-color var(--dur),transform var(--dur),box-shadow var(--dur);position:relative;animation:fadeIn .4s var(--ease);}
+@keyframes fadeIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+.dish-card:hover{border-color:var(--gold);transform:translateY(-5px);box-shadow:0 20px 40px rgba(0,0,0,.4);}
+.dish-card.hidden{display:none;}
+
+/* BADGE */
+.badge{position:absolute;top:.9rem;left:.9rem;z-index:10;padding:.3rem .7rem;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;border-radius:2px;font-weight:500;}
+.badge-best{background:var(--gold);color:var(--ocean-deep);}
+.badge-new{background:#4a90a5;color:#fff;}
+.cat-label{position:absolute;top:.9rem;right:.9rem;z-index:10;padding:.25rem .6rem;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;border:1px solid var(--glass-border);background:rgba(6,14,26,.7);backdrop-filter:blur(8px);border-radius:2px;color:var(--gold);}
+.type-icon{position:absolute;top:3rem;right:.9rem;z-index:10;width:28px;height:28px;border-radius:50%;background:rgba(6,14,26,.7);border:1px solid var(--glass-border);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;font-size:.65rem;color:var(--text-muted);}
+.card-type-3d .type-icon{color:var(--gold);border-color:var(--gold);}
+.card-type-photo-ar .type-icon{color:#4a90a5;border-color:#4a90a5;}
+
+/* MODEL VIEWER / IMAGE AREA */
+.card-visual{height:240px;background:linear-gradient(135deg,var(--ocean-mid),var(--ocean-teal));position:relative;overflow:hidden;}
+.card-visual model-viewer{width:100%;height:100%;--poster-color:transparent;}
+.card-visual img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease);}
+.dish-card:hover .card-visual img{transform:scale(1.06);}
+.visual-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,14,26,.5) 0%,transparent 60%);}
+
+/* AR BTN */
+.ar-row{position:absolute;bottom:.8rem;left:50%;transform:translateX(-50%);display:flex;gap:.5rem;opacity:0;transition:opacity var(--dur);}
+.dish-card:hover .ar-row{opacity:1;}
+.ar-btn{padding:.4rem .9rem;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;border-radius:2px;cursor:pointer;font-family:var(--font-sans);display:flex;align-items:center;gap:.35rem;transition:all var(--dur);white-space:nowrap;}
+.ar-btn-primary{background:var(--gold);border:1px solid var(--gold);color:var(--ocean-deep);}
+.ar-btn-primary:hover{background:var(--gold-light);}
+.ar-btn-outline{background:rgba(6,14,26,.7);border:1px solid var(--glass-border);color:var(--off-white);backdrop-filter:blur(8px);}
+.ar-btn-outline:hover{border-color:var(--gold);color:var(--gold);}
+
+/* INFO */
+.dish-info{padding:1.4rem 1.5rem 1.5rem;flex:1;display:flex;flex-direction:column;}
+.dish-name{font-family:var(--font-serif);font-size:1.35rem;font-weight:300;color:var(--off-white);margin-bottom:.4rem;}
+.dish-desc{font-size:.82rem;color:var(--text-muted);line-height:1.65;flex:1;}
+.dish-footer{display:flex;justify-content:space-between;align-items:center;margin-top:1rem;padding-top:.8rem;border-top:1px solid var(--glass-border);}
+.dish-price{font-size:1rem;color:var(--gold);letter-spacing:.05em;}
+.dish-action{width:34px;height:34px;border-radius:50%;border:1px solid var(--glass-border);background:transparent;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:.8rem;cursor:pointer;transition:all var(--dur);}
+.dish-action:hover{background:var(--gold);color:var(--ocean-deep);border-color:var(--gold);}
+
+/* EMPTY */
+.empty-state{text-align:center;padding:5rem 2rem;display:none;}
+.empty-state i{font-size:3rem;color:var(--glass-border);margin-bottom:1rem;}
+.empty-state p{color:var(--text-muted);}
+
+/* FOOTER */
+.page-footer{text-align:center;padding:2rem;border-top:1px solid var(--glass-border);font-size:.78rem;color:var(--text-muted);}
+
+@media(max-width:600px){
+  .menu-grid{grid-template-columns:1fr;}
+  .topbar-inner{gap:.5rem;}
+  .brand{display:none;}
+  .search-wrap{max-width:100%;flex:1 1 100%;order:3;}
+}
+@media(max-width:900px){
+  .menu-grid{grid-template-columns:repeat(auto-fill,minmax(250px,1fr));}
+}
+</style>
 </head>
 <body>
 
-<nav class="lm-nav scrolled" id="navbar">
-  <a href="../../index.html" class="nav-logo">
-    <img src="../../assets/img/x1.png" alt="La Marinade">
-  </a>
-  <ul class="nav-links">
-    <li><a href="../../index.html">Home</a></li>
-    <li><a href="../../about.html">About</a></li>
-    <li><a href="../../index.html#menu" class="active">Menu 3D</a></li>
-    <li><a href="../../contact.html">Contact</a></li>
-  </ul>
-  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="../../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back</a>
+    <span class="brand">La <em>Marinade</em> — Menu</span>
+    <div class="search-wrap">
+      <i class="fas fa-search"></i>
+      <input type="text" id="search-input" placeholder="Search dishes…" autocomplete="off"/>
+    </div>
+  </div>
+</div>
 
-<div class="mobile-menu" id="mobile-menu">
-  <a href="../../index.html">Home</a>
-  <a href="../../about.html">About</a>
-  <a href="../../index.html#menu" style="color:var(--gold)">Menu 3D</a>
-  <a href="../../contact.html">Contact</a>
-  <div class="mobile-social">
-    <a href="https://www.instagram.com/la_marinade.seafood" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.facebook.com/people/La-Marinade-Seafood/61570489477941/?ref=PROFILE_EDIT_xav_ig_profile_page_web#" target="_blank"><i class="fab fa-facebook"></i></a>
-    <a href="https://www.tiktok.com/@la.marinade_seafood?_r=1&_t=ZN-925AebrUnAc&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnPhN3oi7mdw5uiHWwXKiXOqUtA5Ww52c9yeDWvqcUKmCRTcEwTh-P9Fe3E1E_aem_6cMM0jhsqXGjW3ArKEsfXA" target="_blank"><i class="fab fa-tiktok"></i></a>
+<div class="filter-section">
+  <div class="filter-bar" id="filter-bar">
+    <button class="filter-btn active" data-cat="all">All</button>
+    <button class="filter-btn" data-cat="plat">Plat &amp; Entrée Chaude</button>
+    <button class="filter-btn" data-cat="pizza">Pizza</button>
+    <button class="filter-btn" data-cat="burger">Burger</button>
+    <button class="filter-btn" data-cat="entree-froide">Entrée Froide</button>
+    <button class="filter-btn" data-cat="gratin">Gratin</button>
+    <button class="filter-btn" data-cat="tacos">Tacos</button>
+    <button class="filter-btn" data-cat="sandwich">Sandwich Poulet</button>
+    <button class="filter-btn" data-cat="seafood">Seafood</button>
+    <button class="filter-btn" data-cat="pasta">Pasta</button>
+    <button class="filter-btn" data-cat="salad">Salads</button>
+    <button class="filter-btn" data-cat="drinks">Drinks</button>
   </div>
 </div>
 
 <section class="menu-section">
-  <a href="../../index.html#menu" class="back-link">
-    <i class="fas fa-arrow-left"></i> Back to Menu
-  </a>
-  <header class="section-header">
-    <p class="section-label" style="justify-content:center;">Immersive Dining</p>
-    <h2 class="section-title">3D AR <em>Experience</em></h2>
-  </header>
-<div class="menu-grid">
-        <article class="dish-card">
-          <div class="model-wrapper">
-            <model-viewer
-              src="../3DGLB/type1/pizza-v1.glb"
-              poster="https://modelviewer.dev/shared-assets/models/hamburger-poster.webp"
-              alt="A 3D model of Pizza"
-              shadow-intensity="1"
-              exposure="1"
-              environment-image="neutral"
-              camera-controls
-              touch-action="pan-y"
-              auto-rotate
-              ar
-              ar-modes="webxr scene-viewer quick-look"
-              loading="lazy"
-            >
-              <button slot="ar-button" class="ar-button">
-                <svg
-                  class="ar-icon"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"
-                  ></path>
-                </svg>
-                View in AR
-              </button>
-
-              <div class="progress-bar hide" slot="progress-bar">
-                <div class="update-bar"></div>
-              </div>
-            </model-viewer>
-          </div>
-          <div class="dish-info">
-            <div>
-              <div class="dish-header">
-                <h3 class="dish-name" id="name-margherita">
-                  Margherita Deluxe
-                </h3>
-                <span class="dish-price" id="price-margherita">16.00 DA</span>
-              </div>
-              <p class="dish-desc">
-                Fresh mozzarella, basil, tomato sauce on crispy wood-fired
-                dough.
-              </p>
-              <div class="dish-details">
-                <div class="detail-item">
-                  <i class="fas fa-fire"></i>
-                  <span>320 Calories</span>
-                </div>
-                <div class="detail-item">
-                  <i class="fas fa-clock"></i>
-                  <span>10 min prep</span>
-                </div>
-                <div class="detail-item">
-                  <i class="fas fa-leaf"></i>
-                  <span>Vegetarian</span>
-                </div>
-                <div class="detail-item">
-                  <i class="fas fa-star"></i>
-                  <span>4.7/5 Rating</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <article class="dish-card">
-          <div class="model-wrapper">
-            <model-viewer
-              src="../3DGLB/type1/pizzapipirouni (1).glb"
-              poster="https://modelviewer.dev/shared-assets/models/shishkebab-poster.webp"
-              alt="A 3D model of Pizza"
-              shadow-intensity="1"
-              exposure="1"
-              environment-image="neutral"
-              camera-controls
-              touch-action="pan-y"
-              auto-rotate
-              ar
-              ar-modes="webxr scene-viewer quick-look"
-              loading="lazy"
-            >
-              <button slot="ar-button" class="ar-button">
-                <svg
-                  class="ar-icon"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"
-                  ></path>
-                </svg>
-                View in AR
-              </button>
-
-              <div class="progress-bar hide" slot="progress-bar">
-                <div class="update-bar"></div>
-              </div>
-            </model-viewer>
-          </div>
-          <div class="dish-info">
-            <div>
-              <div class="dish-header">
-                <h3 class="dish-name" id="name-pepperoni">Pepperoni Premium</h3>
-                <span class="dish-price" id="price-pepperoni">19.00 DA</span>
-              </div>
-              <p class="dish-desc">
-                Double pepperoni with extra cheese and Italian herbs on
-                sourdough base.
-              </p>
-              <div class="dish-details">
-                <div class="detail-item">
-                  <i class="fas fa-fire"></i>
-                  <span>450 Calories</span>
-                </div>
-                <div class="detail-item">
-                  <i class="fas fa-clock"></i>
-                  <span>12 min prep</span>
-                </div>
-                <div class="detail-item">
-                  <i class="fas fa-leaf"></i>
-                  <span>Meat Lover</span>
-                </div>
-                <div class="detail-item">
-                  <i class="fas fa-star"></i>
-                  <span>4.9/5 Rating</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-      </div>
-    
+  <p class="results-count" id="results-count"></p>
+  <div class="menu-grid" id="menu-grid"></div>
+  <div class="empty-state" id="empty-state">
+    <i class="fas fa-utensils"></i>
+    <p>No dishes found. Try another search.</p>
+  </div>
 </section>
 
-<footer>
-  <div class="footer-bottom" style="border:none; padding:2rem clamp(1.5rem,5vw,4rem);">
-    <span>© 2025 La Marinade. All rights reserved.</span>
-    <div class="footer-social">
-      <a href="https://www.instagram.com/la_marinade.seafood" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://www.facebook.com/people/La-Marinade-Seafood/61570489477941/?ref=PROFILE_EDIT_xav_ig_profile_page_web#" target="_blank"><i class="fab fa-facebook"></i></a>
-      <a href="https://www.tiktok.com/@la.marinade_seafood?_r=1&_t=ZN-925AebrUnAc&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnPhN3oi7mdw5uiHWwXKiXOqUtA5Ww52c9yeDWvqcUKmCRTcEwTh-P9Fe3E1E_aem_6cMM0jhsqXGjW3ArKEsfXA" target="_blank"><i class="fab fa-tiktok"></i></a>
-    </div>
-  </div>
-</footer>
+<footer class="page-footer">© 2025 La Marinade · All rights reserved</footer>
 
 <script>
-  const hb = document.getElementById('hamburger');
-  const mm = document.getElementById('mobile-menu');
-  hb.addEventListener('click', () => {
-    hb.classList.toggle('open');
-    mm.classList.toggle('open');
-    document.body.style.overflow = mm.classList.contains('open') ? 'hidden' : '';
+/*
+ * ============================================================
+ *  HOW TO ADD A NEW DISH
+ * ============================================================
+ *  Just add an object to the ITEMS array below.
+ *
+ *  FIELDS:
+ *    type   → "3d"       = 3D model viewer + AR button + 3D button
+ *             "photo-ar" = Photo displayed + AR button (needs glb)
+ *             "photo"    = Photo only, no 3D/AR
+ *
+ *    cat    → category key (pizza, burger, seafood, plat, etc.)
+ *    name   → dish name
+ *    desc   → short description
+ *    price  → price string
+ *    badge  → "best" | "new" | "" (empty = no badge)
+ *    glb    → path to .glb file  (required for "3d" and "photo-ar")
+ *    img    → path to image       (required for "photo-ar" and "photo")
+ *
+ *  EXAMPLES:
+ *    {type:"3d",      cat:"pizza",   name:"Pizza 3D", desc:"...", price:"1 200 DA", badge:"best", glb:"../3DGLB/type1/pizza.glb"},
+ *    {type:"photo-ar",cat:"burger",  name:"Burger",   desc:"...", price:"900 DA",   badge:"new",  glb:"../3DGLB/type1/pizza.glb", img:"../img/seafood_bass.png"},
+ *    {type:"photo",   cat:"drinks",  name:"Juice",    desc:"...", price:"350 DA",   badge:""},
+ * ============================================================
+ */
+
+const ITEMS = [
+  // ──── Pizza (3D) ────
+  {type:"3d", cat:"pizza", name:"Pizza Pepperoni", desc:"Spicy pepperoni, fresh mozzarella, and tomato sauce.", price:"1 200 DA", badge:"best", glb:"../3DGLB/type1/pizzapipirouni (1).glb"},
+  {type:"3d", cat:"pizza", name:"Pizza Margherita", desc:"Classic pizza with San Marzano tomatoes and basil.", price:"1 100 DA", badge:"", glb:"../3DGLB/type1/pizza-v1.glb"},
+  {type:"3d", cat:"pizza", name:"Pizza Classique", desc:"Traditional pizza baked in a wood-fired oven.", price:"1 150 DA", badge:"", glb:"../3DGLB/type1/pizza.glb"},
+
+  // ──── Sandwich (3D) ────
+  {type:"3d", cat:"sandwich", name:"Sandwich Calamar", desc:"Crispy fried calamari with tartar sauce in a fresh baguette.", price:"950 DA", badge:"best", glb:"../3DGLB/type1/sondwich calamar.glb"},
+  {type:"3d", cat:"sandwich", name:"Sandwich Poisson", desc:"Grilled fish fillet with herbs and fresh salad.", price:"900 DA", badge:"new", glb:"../3DGLB/type1/sondwich poissent.glb"},
+
+  // ──── Seafood (3D) ────
+  {type:"3d", cat:"seafood", name:"Box Milonge", desc:"A mixed box of fresh seafood delicacies.", price:"2 500 DA", badge:"best", glb:"../3DGLB/type1/box milonge.glb"},
+  {type:"3d", cat:"seafood", name:"Milonge Royale", desc:"Premium seafood platter with the finest catches of the day.", price:"3 200 DA", badge:"", glb:"../3DGLB/type1/milonge2.glb"},
+
+  // ──── Plat & Entrée Chaude (3D) ────
+  {type:"3d", cat:"plat", name:"Omelette Premium", desc:"Fluffy omelette prepared with fresh ingredients and herbs.", price:"600 DA", badge:"", glb:"../3DGLB/type1/omelette dish 3d model.glb"},
+
+  // ──── Entrée Froide (3D) ────
+  {type:"3d", cat:"entree-froide", name:"Cheesy Bread", desc:"Warm, oven-baked bread stuffed with melting cheese.", price:"550 DA", badge:"new", glb:"../3DGLB/type1/cheesy bread plate 3d model.glb"},
+
+  // ──── Burger (photo + AR placeholder) ────
+  {type:"photo-ar", cat:"burger", name:"Classic Smash Burger", desc:"Double smash patty, American cheese, pickles and secret sauce.", price:"1 350 DA", badge:"best", glb:"../3DGLB/type1/pizza.glb", img:"../img/seafood_shrimp.png"},
+
+  // ──── Gratin (photo only) ────
+  {type:"photo", cat:"gratin", name:"Gratin Dauphinois", desc:"Slow-baked potato gratin with crème fraîche and gruyère.", price:"900 DA", badge:"best", img:"../img/seafood_lobster.png"},
+
+  // ──── Tacos (photo + AR placeholder) ────
+  {type:"photo-ar", cat:"tacos", name:"Tacos Poulet Grillé", desc:"Grilled chicken, avocado, pico de gallo and chipotle cream.", price:"950 DA", badge:"", glb:"../3DGLB/type1/pizza.glb", img:"../img/seafood_bass.png"},
+
+  // ──── Pasta (photo only) ────
+  {type:"photo", cat:"pasta", name:"Spaghetti alle Vongole", desc:"Spaghetti with clams, garlic, white wine and parsley.", price:"1 300 DA", badge:"best", img:"../img/seafood_oysters.png"},
+
+  // ──── Salads (photo only) ────
+  {type:"photo", cat:"salad", name:"Salade Méditerranéenne", desc:"Cucumber, tomato, feta, olives and lemon-oregano vinaigrette.", price:"700 DA", badge:"", img:"../img/seafood_oysters.png"},
+
+  // ──── Drinks (photo only) ────
+  {type:"photo", cat:"drinks", name:"Limonade Menthe", desc:"Homemade lemonade with fresh mint, honey and sparkling water.", price:"380 DA", badge:"new", img:"../img/seafood_bass.png"},
+];
+
+function buildCard(item){
+  const badgeHTML = item.badge === "best"
+    ? `<span class="badge badge-best"><i class="fas fa-star"></i> Best Seller</span>`
+    : item.badge === "new" ? `<span class="badge badge-new">New</span>` : "";
+
+  // ── Visual area depends on type ──
+  let visualHTML = "";
+  let buttonsHTML = "";
+
+  if (item.type === "3d") {
+    // Card 1: 3D model-viewer + AR + 3D buttons
+    visualHTML = `<model-viewer src="${item.glb}" alt="${item.name}" auto-rotate camera-controls shadow-intensity="1"
+       ar ar-modes="webxr scene-viewer quick-look"
+       style="width:100%;height:100%;--poster-color:transparent;"></model-viewer>`;
+    buttonsHTML = `
+      <button class="ar-btn ar-btn-primary" onclick="triggerAR(this)"><i class="fas fa-vr-cardboard"></i> AR</button>
+      <button class="ar-btn ar-btn-outline" onclick="trigger3D(this)"><i class="fas fa-cube"></i> 3D</button>`;
+
+  } else if (item.type === "photo-ar") {
+    // Card 2: Photo displayed + hidden model-viewer for AR
+    visualHTML = `<img src="${item.img}" alt="${item.name}" loading="lazy"/>
+      <model-viewer src="${item.glb}" alt="${item.name}"
+       ar ar-modes="webxr scene-viewer quick-look"
+       style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;"></model-viewer>`;
+    buttonsHTML = `
+      <button class="ar-btn ar-btn-primary" onclick="triggerAR(this)"><i class="fas fa-vr-cardboard"></i> AR</button>`;
+
+  } else {
+    // Card 3: Photo only — no 3D, no AR
+    visualHTML = `<img src="${item.img || ''}" alt="${item.name}" loading="lazy"/>`;
+    buttonsHTML = "";
+  }
+
+  const typeIcon = item.type === "3d" ? '<i class="fas fa-cube"></i>'
+                 : item.type === "photo-ar" ? '<i class="fas fa-camera"></i>'
+                 : '<i class="fas fa-image"></i>';
+
+  return `<div class="dish-card card-type-${item.type}" data-cat="${item.cat}" data-name="${item.name.toLowerCase()} ${item.desc.toLowerCase()}">
+    ${badgeHTML}
+    <span class="cat-label">${catLabel(item.cat)}</span>
+    <span class="type-icon">${typeIcon}</span>
+    <div class="card-visual">
+      ${visualHTML}
+      <div class="visual-overlay"></div>
+      ${buttonsHTML ? `<div class="ar-row">${buttonsHTML}</div>` : ""}
+    </div>
+    <div class="dish-info">
+      <div class="dish-name">${item.name}</div>
+      <div class="dish-desc">${item.desc}</div>
+      <div class="dish-footer">
+        <span class="dish-price">${item.price}</span>
+        <button class="dish-action" title="Add to order"><i class="fas fa-plus"></i></button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function catLabel(cat){
+  const m={plat:"Plat & Entrée Chaude",pizza:"Pizza",burger:"Burger","entree-froide":"Entrée Froide",
+    gratin:"Gratin",tacos:"Tacos",sandwich:"Sandwich Poulet",seafood:"Seafood",
+    pasta:"Pasta",salad:"Salads",drinks:"Drinks"};
+  return m[cat]||cat;
+}
+
+function triggerAR(btn){
+  const mv=btn.closest('.card-visual').querySelector('model-viewer');
+  if(mv && mv.canActivateAR) mv.activateAR();
+}
+function trigger3D(btn){
+  const mv=btn.closest('.card-visual').querySelector('model-viewer');
+  if(mv){ mv.cameraOrbit="45deg 55deg 4m"; mv.fieldOfView="30deg"; }
+}
+
+const grid=document.getElementById('menu-grid');
+const countEl=document.getElementById('results-count');
+const emptyEl=document.getElementById('empty-state');
+let activeCat='all', searchQuery='';
+
+function render(){
+  const filtered=ITEMS.filter(item=>{
+    const catMatch=activeCat==='all'||item.cat===activeCat;
+    const textMatch=!searchQuery||item.name.toLowerCase().includes(searchQuery)||item.desc.toLowerCase().includes(searchQuery);
+    return catMatch&&textMatch;
   });
-  mm.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      hb.classList.remove('open');
-      mm.classList.remove('open');
-      document.body.style.overflow = '';
-    });
-  });
+  grid.innerHTML=filtered.map(buildCard).join('');
+  const n=filtered.length;
+  countEl.textContent=n===0?'':`${n} dish${n===1?'':'es'} found`;
+  emptyEl.style.display=n===0?'block':'none';
+}
+
+document.getElementById('filter-bar').addEventListener('click',e=>{
+  const btn=e.target.closest('.filter-btn');
+  if(!btn)return;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  activeCat=btn.dataset.cat;
+  render();
+});
+
+let searchTimer;
+document.getElementById('search-input').addEventListener('input',e=>{
+  clearTimeout(searchTimer);
+  searchTimer=setTimeout(()=>{ searchQuery=e.target.value.trim().toLowerCase(); render(); },200);
+});
+
+render();
 </script>
 </body>
 </html>
-<script>
-      document.addEventListener('DOMContentLoaded', () => {
-    // جلب البيانات من ملف JSON
-    fetch('menu.json')
-        .then(response => response.json())
-        .then(data => {
-            // تحديث البيتزا الأولى
-            const p1 = data.pizzas.find(p => p.id === "margherita");
-            if(p1) {
-                document.getElementById('name-margherita').innerText = p1.name;
-                document.getElementById('price-margherita').innerText = p1.price;
-            }
-
-            // تحديث البيتزا الثانية
-            const p2 = data.pizzas.find(p => p.id === "pepperoni");
-            if(p2) {
-                document.getElementById('name-pepperoni').innerText = p2.name;
-                document.getElementById('price-pepperoni').innerText = p2.price;
-            }
-        })
-        .catch(error => console.error('Error loading menu:', error));
-});
-    </script>
