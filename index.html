@@ -201,7 +201,7 @@
       position: relative;
       border-radius: 4px;
       overflow: hidden;
-      aspect-ratio: 4/3;
+      aspect-ratio: 3/4;
       cursor: pointer;
     }
     .menu-card img {
@@ -258,34 +258,6 @@
     }
     .menu-card:hover .menu-card-btn { transform: scale(1); }
     .menu-card-btn:hover { background: var(--gold); color: var(--ocean-deep); }
-
-    /* ===== GALLERY STRIP ===== */
-    .gallery-strip {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      grid-template-rows: 300px 300px;
-      gap: 4px;
-    }
-    .gallery-strip-item {
-      overflow: hidden;
-      position: relative;
-    }
-    .gallery-strip-item:first-child { grid-row: span 2; }
-    .gallery-strip-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s var(--ease);
-    }
-    .gallery-strip-item:hover img { transform: scale(1.06); }
-    .gallery-strip-item::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(6,14,26,0.2);
-      transition: background var(--dur);
-    }
-    .gallery-strip-item:hover::after { background: rgba(6,14,26,0.0); }
 
     /* ===== QUOTE ===== */
     .quote-section {
@@ -402,8 +374,6 @@
   </div>
 </section>
 
-
-
 <!-- Menu Cards -->
 <section class="home-menu" id="menu">
   <div class="home-menu-header">
@@ -415,41 +385,33 @@
   </div>
   <div class="menu-cards">
     <div class="menu-card reveal">
-      <img src="assets/img/x0.png" alt="Grilled Sea Bass"/>
+      <img src="assets/img/p1.png" alt="Grilled Sea Bass"/>
       <div class="menu-card-overlay">
-        <span class="menu-card-tag">Fish</span>
+        <span class="menu-card-tag">pizza</span>
         <p class="menu-card-name">Grilled Sea Bass</p>
-        <p class="menu-card-price">From 1,850 DA</p>
+        <p class="menu-card-price">1,850 DA</p>
       </div>
       <a href="assets/3DHTML/type1.html" class="menu-card-btn"><i class="fas fa-cube"></i></a>
     </div>
     <div class="menu-card reveal reveal-delay-1">
-      <img src="assets/img/x2.png" alt="Tiger Prawns"/>
+      <img src="assets/img/f1.png" alt="Tiger Prawns"/>
       <div class="menu-card-overlay">
         <span class="menu-card-tag">Shrimp</span>
         <p class="menu-card-name">Tiger Prawns</p>
-        <p class="menu-card-price">From 2,200 DA</p>
+        <p class="menu-card-price">2,200 DA</p>
       </div>
       <a href="assets/3DHTML/type1.html" class="menu-card-btn"><i class="fas fa-cube"></i></a>
     </div>
     <div class="menu-card reveal reveal-delay-2">
-      <img src="assets/img/x3.png" alt="Fresh Oysters"/>
+      <img src="assets/img/m1.png" alt="Fresh Oysters"/>
       <div class="menu-card-overlay">
         <span class="menu-card-tag">Oysters</span>
         <p class="menu-card-name">Fresh Oysters</p>
-        <p class="menu-card-price">From 1,400 DA</p>
+        <p class="menu-card-price">1,400 DA</p>
       </div>
       <a href="assets/3DHTML/type1.html" class="menu-card-btn"><i class="fas fa-cube"></i></a>
     </div>
-    <div class="menu-card reveal reveal-delay-3">
-      <img src="assets/img/x4.png" alt="Lobster Thermidor"/>
-      <div class="menu-card-overlay">
-        <span class="menu-card-tag">Lobster</span>
-        <p class="menu-card-name">Lobster Thermidor</p>
-        <p class="menu-card-price">From 3,500 DA</p>
-      </div>
-      <a href="assets/3DHTML/type1.html" class="menu-card-btn"><i class="fas fa-cube"></i></a>
-    </div>
+
   </div>
 </section>
 <!-- Features Bar -->

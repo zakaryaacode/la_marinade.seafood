@@ -32,7 +32,7 @@
   --font-sans:   'DM Sans', system-ui, sans-serif;
 
   /* Spacing */
-  --nav-h: 72px;
+  --nav-h: 80px;
   --section-pad: clamp(4rem, 8vw, 8rem);
 
   /* Transitions */
@@ -133,7 +133,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   align-items: center;
 }
 .lm-nav .nav-logo img {
-  height: 50px;
+  height: 65px;
   width: auto;
   display: block;
 }
